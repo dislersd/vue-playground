@@ -49,19 +49,36 @@
       height: 8rem;
       vertical-align: calc(-0.12109375em);
     }
+
+    .spacer {
+      border-bottom: 2px solid #333;
+      width: 100%;
+      margin: 30px;
+    }
   </style>
   <title>First Vue Project</title>
 </head>
 
 <body>
   <div id="app">
+
     <input type="text" v-model="message2"></input>
     <p v-html="
       message.slice(0,6) +
       message2
     "></p>
 
+    <div class="spacer"></div>
+
     <p v-html="incendio(lumos(wizard))"></p>
+
+    <div class="spacer"></div>
+
+    <div v-html="wizard + ' ' + (
+      wizard == harry ? hedwig :
+      wizard == ron ? scabbers :
+      wizard == hermione ? crookshanks : ' '
+    )"></div>
   </div>
 
   <script>
@@ -87,14 +104,28 @@
       data: {
         message: "hello world",
         message2: "you",
-        wizard: emojify("wizard")
+        wizard: emojify("wizard"),
+        harry: emojify('harry'),
+        hedwig: emojify('hedwig'),
+        ron: emojify('ron'),
+        scabbers: emojify('scabbers'),
+        hermione: emojify('hermione'),
+        crookshanks: emojify('crookshanks')
       },
       methods: {
         lumos: cast(emojify("lumos")),
-        incendio: cast(emojify("incendio"))
+        incendio: cast(emojify("incendio")),
+        wizards: function () {
+          return [
+            { name: this.harry, pet: this.hedwig },
+            { name: this.ron, pet: this.scabbers },
+            { name: this.hermione, pet: this.crookshanks }
+          ]
+        }
       }
     })
 
+    app.wizard = app.harry
   </script>
 </body>
 
