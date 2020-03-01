@@ -60,17 +60,41 @@
       message.slice(0,6) +
       message2
     "></p>
+
+    <p v-html="incendio(lumos(wizard))"></p>
   </div>
 
   <script>
+
+    "use strict"
+
+    function emojify(name) {
+      var out = `<img src="emojis/${name}.png" />`
+      return out
+    }
+
+    function cast(emoji) {
+      if (!emoji) {
+        emoji = "¯\\_(ツ)_/¯"
+      }
+      return function (wizard) {
+        return emoji + wizard + emoji
+      }
+    }
 
     var app = new Vue({
       el: "#app",
       data: {
         message: "hello world",
-        message2: "you"
+        message2: "you",
+        wizard: emojify("wizard")
+      },
+      methods: {
+        lumos: cast(emojify("lumos")),
+        incendio: cast(emojify("incendio"))
       }
     })
+
   </script>
 </body>
 
