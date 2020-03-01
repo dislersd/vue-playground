@@ -76,6 +76,12 @@
     <div class="spacer"></div>
 
     <p v-for="wizard in wizards()" v-html="wizard.name + ' ' + wizard.pet"></p>
+
+    <div class="spacer"></div>
+
+    <harry></harry>
+    <ron></ron>
+    <hermione></hermione>
   </div>
 
   <script>
@@ -95,6 +101,10 @@
         return emoji + wizard + emoji
       }
     }
+
+    Vue.component("harry", { template: `<p> ${emojify("harry")} </p>` })
+    Vue.component("ron", { template: `<p> ${emojify("ron")} </p>` })
+    Vue.component("hermione", { template: `<p> ${emojify("hermione")} </p>` })
 
     var app = new Vue({
       el: "#app",
