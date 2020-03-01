@@ -32,12 +32,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       font-weight: 900;
       font-size: 8rem;
       color: hsl(0, 0%, 100%);
       background: hsl(240, 100%, 67%);
+      padding-bottom: 40px;
     }
 
     input {
@@ -74,11 +75,7 @@
 
     <div class="spacer"></div>
 
-    <div v-html="wizard + ' ' + (
-      wizard == harry ? hedwig :
-      wizard == ron ? scabbers :
-      wizard == hermione ? crookshanks : ' '
-    )"></div>
+    <p v-for="wizard in wizards()" v-html="wizard.name + ' ' + wizard.pet"></p>
   </div>
 
   <script>
